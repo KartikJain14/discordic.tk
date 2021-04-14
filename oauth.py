@@ -6,6 +6,7 @@ class Oauth(object):
   redirect_uri = "https://discordic.tk/logged"
   discord_login_url = f"https://discord.com/api/oauth2/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope={scope}"
   discord_token_url = "https://discord.com/api/oauth2/token"
+  discord_api_url = "https://discordapp.com/api"
 @staticmethod
 def get_acces_token(code):
   payload = {
@@ -22,3 +23,13 @@ def get_acces_token(code):
   access_token = requests.post(url=Oauth.discord_token_url,data=payload,headers=headers)
   json = access_token.json()
   return json.get("access_token)
+
+@staticmethod
+def get_user_json():
+  url = Oauth.discord_api_url+"/users/@me"
+  headers = {
+  "Authorization": f"Bearer {access_token}"
+  }
+  user_object = requests.get(url=url,headers=headers)
+  user_json = user_object.json()
+  return user_json
