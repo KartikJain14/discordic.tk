@@ -11,7 +11,9 @@ async def join():
 async def logged():
   code = requests.args.get("code")
   access_token = Oauth.get_access_token(code)
-  return "gg"
+  user_json = Oauth.get_user_json(access_token)
+  username = user_json.get("username")
+  return username
 
 @app.route("/",methods=["get"])
 async def index():
