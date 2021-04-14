@@ -10,6 +10,7 @@ async def join():
 @app.route("/logged",methods=["get"])
 async def logged():
   code = requests.args.get("code")
+  access_token = Oauth.get_access_token(code)
   return "gg"
 
 @app.route("/",methods=["get"])
