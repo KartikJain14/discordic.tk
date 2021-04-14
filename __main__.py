@@ -9,7 +9,8 @@ async def join():
 
 @app.route("/logged",methods=["get"])
 async def logged():
-  return "Logged in"
+  code = requests.args.get("code")
+  return "gg"
 
 @app.route("/",methods=["get"])
 async def index():
